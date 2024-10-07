@@ -1,0 +1,828 @@
+@font-face {
+  font-family: "SF UI Display";
+  src: url("fonts/SFUIDisplay-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "SF UI Display";
+  src: url("fonts/SFUIDisplay-Semibold.ttf");
+  font-weight: 600;
+}
+body{
+  background: #16202B;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 136px;
+}
+.loader-root{
+  background: url("imgs/loader-bg.png");
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+.loader{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loader-roundbox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112px;
+  width: 112px;
+  position: relative;
+}
+.loader-roundbox img{
+  width: 57.4px;
+  height: 57.4px;
+}
+.circle-bg{
+  height: 112px;
+  width: 112px;
+  position: absolute;
+  border-radius: 50%;
+  border: 5px solid #3f4751;
+  box-sizing: border-box;
+}
+svg,
+.logo {
+	position: absolute;
+  transform: rotate(-90deg);
+}
+.logo {
+	width: 140px;
+	height: 140px;
+	border-radius: 100px;
+	opacity: 0;
+	animation: fadeIn 0.75s linear forwards;
+	animation-delay: 1s;
+}
+.circle {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: stroke 7s ease-out forwards;
+}
+.circle2 {
+  animation: stroke 30s ease-out forwards;
+}
+
+@keyframes stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+	}
+}
+.loader-text{
+  margin-top: 28px;
+  text-align: center;
+  color: #FFF;
+  text-align: center;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 30.1px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%;
+  letter-spacing: -0.602px;
+}
+.received{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.coin-anim{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coin-anim img{
+  position: relative;
+}
+.received-text{
+  margin-top: 28px;
+  text-align: center;
+  color: #FFF;
+  text-align: center;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 30.1px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%;
+  letter-spacing: -0.602px;
+  width: 300px;
+  text-align: center;
+  margin-top: 58px;
+}
+.received-text2{
+  margin-top: 40px;
+  color: #FFF;
+  text-align: center;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 18.9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 110%; /* 20.79px */
+  letter-spacing: -0.378px;
+}
+.received-balance{
+  color: #0098EA;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 18.9px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+  letter-spacing: -0.378px;
+}
+.received-btn{
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 4.9px;
+  margin-top: 14px;
+  user-select: none;
+  box-sizing: border-box;
+  border-radius: 8.05px;
+  background: #0098EA;
+  cursor: pointer;
+  width: 286px;
+  margin-top: 40px;
+}
+.received-btn span{
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 15.4px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 20px;
+  min-height: 100vh;
+}
+.main-block1{
+  display: flex;
+  flex-direction: column;
+  border-radius: 11.2px;
+  border: 0.7px solid #334053;
+  background: #293649;
+  width: 100%;
+  padding: 21px 15.4px;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.main-block1::after{
+  content: '';
+  position: absolute;
+  height: 121px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 349.65px;
+  opacity: 0.2;
+  width: 100%;
+  background: #0098EA;
+  filter: blur(61.25px);
+  bottom: -73.422px;
+}
+.main-balance-block{
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main-balance-block img{
+  height: 53px;
+}
+.main-balance-block span{
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 50.4px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -1.008px;
+  white-space: nowrap;
+}
+.withdraw-faq-btns{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  margin-top: 14px;
+}
+.faq-btn{
+  cursor: pointer;
+}
+.withdraw-btn{
+  display: flex;
+  height: 58.8px;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 4.9px;
+  border-radius: 11.2px;
+  background: rgba(255, 255, 255, 0.15);
+  user-select: none;
+  box-sizing: border-box;
+}
+.withdraw-btn img{
+  opacity: 0.6;
+}
+.withdraw-btn span{
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 15.4px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  opacity: 0.6;
+}
+.main-block1-line{
+  height: 1px;
+  width: 100%;
+  background: #334053;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+.withdrawtext-block{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+.withdrawtext-block img{
+  height: 15px;
+  opacity: 0.6;
+}
+.withdrawtext-block span{
+  opacity: 0.6;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.timer-block{
+  display: flex;
+  flex-direction: row;
+  margin-top: 14px;
+  gap: 5px;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.timer-block div{
+  display: flex;
+  height: 70px;
+  width: 76px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 11px;
+  background: rgba(22, 32, 43, 0.60);
+}
+.timer-block div span{
+  opacity: 0.8;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 22.4px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.448px;
+}
+.friends-block{
+  display: flex;
+  flex-direction: column;
+  margin-top: 21px;
+  flex: 1;
+  margin-bottom: auto;
+}
+.friends-block-1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.friends-block-1-1{
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 15.4px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.friends-block-1-2{
+  margin-left: 5px;
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.15);
+  width: 39px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.friends-block-1 img{
+  margin-left: auto;
+  cursor: pointer;
+}
+.friends-text{
+  margin-top: 7px;
+  opacity: 0.6;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.friends-list{
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  overflow-y: auto;
+  position: relative;
+  margin-bottom: auto;
+  flex-grow: 1;
+}
+.friend-item{
+  height: 67px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 11.2px;
+  border: 0.7px solid #334053;
+  background: #293649;
+  padding: 0px 15.4px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  background-image: url("imgs/friend-item-glow.png");
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+.friend-item-img{
+  width: 32px;
+  border-radius: 8px;
+}
+.friend-item-text{
+  margin-left: 10px;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.friend-item-plus{
+  margin-left: auto;
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8.4px 12.95px;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.invite-twobtns{
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+.invite-twobtns::after{
+  content: '';
+  background: linear-gradient(180deg, rgba(22, 32, 43, 0.00) 0%, #16202B 75.18%);
+  width: 100vw;
+  height: 232px;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: -20px;
+}
+.invite-btn1{
+  flex-grow: 1;
+  height: 59px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 11.2px;
+  background: #0098EA;
+  cursor: pointer;
+  z-index: 1000;
+  margin-left: 20px;
+}
+.invite-btn1 span{
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 15.4px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.invite-btn2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 58.8px;
+  height: 58.8px;
+  border-radius: 11.2px;
+  background: #0098EA;
+  z-index: 1000;
+  margin-right: 20px;
+}
+.wallet-block{
+  margin-top: 14px;
+  width: 100%;
+  padding: 0px 15.4px;
+  height: 55px;
+  box-sizing: border-box;
+  border-radius: 11.2px;
+  border: 0.7px solid #334053;
+  background: #293649;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-top: auto;
+}
+.wallet-text{
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 14px;
+}
+.wallet-line{
+  margin-top: 9px;
+  width: 100%;
+  min-height: 1px;
+  background: #0098EA;
+}
+.alert{
+  top: 40px;
+  position: fixed;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 3.5px;
+  width: 261.1px;
+  height: 39.9px;
+  color: #FFF;
+  text-align: center;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 12.6px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 13.86px */
+  letter-spacing: -0.252px;
+  border-radius: 8.05px;
+  background: #0098EA;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.alert img{
+  width: 13px;
+}
+a{
+  text-decoration: none;
+}
+.overlay{
+  width: 100vw;
+  height: 100%;
+  background: #16202B;
+  z-index: 10000;
+  opacity: 1;
+  position: absolute;
+}
+.faq{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 20px;
+  min-height: 100vh;
+}
+.faq-text1{
+  color: #FFF;
+  font-family: "SF UI Display";
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 6px;
+}
+.faq-blocks{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 18px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.faq-block{
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 24px;
+  border-radius: 15.508px;
+  background: #0098EA;
+  cursor: pointer;
+  user-select: none;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 66px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.faq-blocks-title-arrow{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.arrow-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 24px;
+  height: 12px;
+}
+.arrow-container .arrow-1{
+  position: absolute;
+  opacity: 1;
+  transition: 0.2s;
+}
+.arrow-container .arrow-2{
+  position: absolute;
+  opacity: 0;
+  transition: 0.2s;
+}
+.arrow-container-active .arrow-1{
+  opacity: 0;
+}
+.arrow-container-active .arrow-2{
+  opacity: 1;
+}
+.faq-blocks-title-arrow img{
+  cursor: pointer;
+  margin-left: auto;
+}
+.faq-block .faq-block-title{
+  color: #FFF;
+  font-family: "SF UI Display";
+  font-size: 15.4px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.faq-block .faq-block-text{
+  display: none;
+  font-family: "SF UI Display";
+  font-size: 12.6px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 15px;
+}
+.faq-block-active{
+  background: #FFF;
+  max-height: 500px;
+}
+.faq-block-active .faq-block-title{
+  color: #16202B;
+  font-weight: 600;
+}
+.faq-block-active .faq-block-text{
+  display: flex;
+  color: #16202B;
+}
+.imgBuffer{
+  height: 0;
+  visibility: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.tasks-block{
+  display: flex;
+  flex-direction: column;
+  margin-top: 21px;
+  flex: 1;
+  height: 135px;
+  overflow: hidden;
+}
+.tasks-block-1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tasks-block-1-1{
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 15.4px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.tasks-block-1-2{
+  margin-left: 5px;
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.15);
+  width: 39px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.tasks-block-1 img{
+  margin-left: auto;
+  cursor: pointer;
+}
+.tasks-text{
+  margin-top: 7px;
+  opacity: 0.6;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.tasks-list{
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  overflow-y: auto;
+  position: relative;
+  margin-bottom: auto;
+  flex-grow: 1;
+}
+.task-item{
+  height: 67px;
+  display: flex;
+  flex-direction: row;
+  padding: 0px 16.4px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10.56px;
+  border: 0.66px solid #334053;
+  background: #0098EA;
+  align-items: center;
+}
+.task-item-img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.task-item-texts{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 9px;
+}
+.task-item-text1{
+  color: #16202B;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.task-item-text2{
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.tasks-item-status{
+  margin-left: auto;
+}
+.task-item-status{
+  margin-left: auto;
+}
+.task-item-btn{
+  padding: 7.92px 12.21px;
+  border-radius: 33px;
+  background: #FFF;
+  display: flex;
+  flex-direction: row;
+  gap: 3.3px;
+}
+.task-item-btn span, .task-item-btn a{
+  color: #16202B;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "SF UI Display";
+  font-size: 11.22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

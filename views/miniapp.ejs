@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="style.css?v=3.2">
+
+</head>
+<body id="#body">
+  <div class="overlay"></div>
+  <span class="alert" style="display: none;opacity: 0;"></span>
+  <div class="loader-root" style="opacity: 0;display: none;">
+    <div class="loader">
+      <div class="loader-roundbox">
+        <div class="circle-bg"></div>
+        <svg height="112" width="112">
+          <circle class="circle" cx="56" cy="56" r="53" stroke="#0b9ae6" stroke-width="5" fill-opacity="0" />
+        </svg>
+        <img src="imgs/person-loading-img.png">
+      </div>
+      <span class="loader-text"></span>
+    </div>
+    <div class="received" style="display: none; opacity: 0;">
+      <div class="coin-anim">
+        <div class="circle-bg"></div>
+        <svg height="112" width="112">
+          <circle class="circle circle2" cx="56" cy="56" r="53" stroke="#0b9ae6" stroke-width="5" fill-opacity="0" />
+        </svg>
+        <img src="imgs/coin.png" height="57px">
+      </div>
+      <span class="received-text">Analyzing your account...</span>
+      <span class="received-text2" style="opacity: 0;">
+        Your Reward: 
+        <span class="received-balance"></span>
+      </span>
+      <div class="received-btn" style="opacity: 0;"><span>Continue</span></div>
+    </div>
+  </div>
+
+  <div class="main" style="display: none;opacity: 0;">
+    <div class="main-block1">
+      <div class="main-balance-block">
+        <img src="imgs/coin.png" class="balance-coin">
+        <span class="balance"></span>
+      </div>
+      <div class="withdraw-faq-btns">
+        <div class="withdraw-btn">
+          <img src="imgs/withdraw-icon.png">
+          <span>Withdraw</span>
+        </div>
+        <img src="imgs/copy-btn.png" class="faq-btn">
+      </div>
+      <div class="main-block1-line"></div>
+      <div class="withdrawtext-block">
+        <img src="imgs/alert-icon.png">
+        <span>Withdrawal will be available when the timer expires</span>
+      </div>
+      <div class="timer-block">
+        <div>
+          <span id="timer-days">0d</span>
+        </div>
+        <div>
+          <span id="timer-hours">0h</span>
+        </div>
+        <div>
+          <span id="timer-minutes">0m</span>
+        </div>
+        <div>
+          <span id="timer-seconds">0s</span>
+        </div>
+      </div>
+    </div>
+    <div class="tasks-block">
+      <div class="tasks-block-1">
+        <span class="tasks-block-1-1">Tasks</span>
+        <div class="tasks-block-1-2">1</div>
+      </div>
+      <span class="tasks-text">Complete the task and earn tokens</span>
+      <div class="tasks-list">
+        <div class="task-item">
+          <img class="task-item-img" src="imgs/brandimg.jpg" style="border-radius: 50%;">
+          <div class="task-item-texts">
+            <span class="task-item-text1">Join $FRIENDS Community</span>
+            <span class="task-item-text2">+10 000 $FRIENDS</span>
+          </div>
+          <div class="task-item-status">
+            <div class="task-item-btn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="friends-block">
+      <div class="friends-block-1">
+        <span class="friends-block-1-1">Your friends</span>
+        <div class="friends-block-1-2"></div>
+        <img src="imgs/renew-icon.png" class="renew-img">
+      </div>
+      <span class="friends-text">You will receive tokens for inviting other users</span>
+      <div class="friends-list">
+      </div>
+    </div>
+    <div class="invite-twobtns">
+      <a class="invite-btn1">
+        <img src="imgs/person-loading-img.png" width="18px">
+        <span>Invite friends</span>
+      </a>
+      <div class="invite-btn2">
+        <img src="imgs/copy-icon.png">
+      </div>
+    </div>
+    <!--<div class="wallet-block">
+      <span class="wallet-text">Wallet</span>
+      <div class="wallet-line"></div>
+    </div>-->
+  </div>
+  <div class="faq" style="display: none;opacity: 0;">
+    <span class="faq-text1">Frequently Asked Questions:</span>
+    <div class="faq-blocks">
+      <div class="faq-block">
+        <div class="faq-blocks-title-arrow">
+          <span class="faq-block-title">1. When can I withdraw tokens?</span>
+          <div class="arrow-container">
+            <img src="imgs/arrow-1.png" class="arrow-1">
+            <img src="imgs/arrow-2.png" class="arrow-2">
+          </div>
+        </div>
+        <span class="faq-block-text">After a certain time when our token will be finally opened, you will be able to withdraw it to your TON wallet. You have the option to fully dispose them (by selling, buying more, or sending to other users).
+        </span>
+      </div>
+      <div class="faq-block">
+        <div class="faq-blocks-title-arrow">
+          <span class="faq-block-title">2. How to earn more tokens?</span>
+          <div class="arrow-container">
+            <img src="imgs/arrow-1.png" class="arrow-1">
+            <img src="imgs/arrow-2.png" class="arrow-2">
+          </div>
+        </div>
+        <span class="faq-block-text">In our project you get tokens according to our tokenomics for each referral. You will get 40% of the tokens that your referral will receive for registration.
+        </span>
+      </div>
+    </div>
+    <div class="wallet-block" id="backtofriends">
+      <span class="wallet-text">Back to friends</span>
+      <div class="wallet-line"></div>
+    </div>
+  </div>
+  <img class="imgBuffer" src="imgs/loader-bg.png">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+
+    /*if(window.screen.availHeight > 660 && window.Telegram.WebView.initParams.tgWebAppPlatform == "tdesktop"){
+      document.querySelector(".friends-list").style.height = `128px`
+    } else{
+      document.querySelector(".friends-list").style.height = `unset`
+      document.querySelector(".friends-list").style.flex = "1"
+    }*/
+    function getTimeRemaining(endTime) {
+      const now = new Date()
+      const timeDifference = endTime - now
+
+      const seconds = Math.floor((timeDifference / 1000) % 60)
+      const minutes = Math.floor((timeDifference / 1000 / 60) % 60)
+      const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24)
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+
+      return {
+        total: timeDifference,
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds
+      }
+    }
+
+    function updateCountdown(targetDate) {
+      const timeRemaining = getTimeRemaining(new Date(targetDate))
+
+      document.getElementById('timer-days').innerHTML = timeRemaining.days + "d"
+      document.getElementById('timer-hours').innerHTML = timeRemaining.hours + "h"
+      document.getElementById('timer-minutes').innerHTML = timeRemaining.minutes + "m"
+      document.getElementById('timer-seconds').innerHTML = timeRemaining.seconds + "s"
+
+      if (timeRemaining.total <= 0) {
+        clearInterval(interval)
+        console.log('Countdown finished!')
+      }
+    }
+
+    function insertSpaces(str) {
+      return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+    function SetMainPage(objectOfResponse){
+      console.log(insertSpaces(objectOfResponse.balance).length)
+      if(insertSpaces(objectOfResponse.balance).length > 6){
+        document.querySelector(".balance").style.fontSize = "32px"
+        document.querySelector(".balance-coin").style.height = "34px"
+      }
+      document.querySelector(".balance").innerHTML = insertSpaces(objectOfResponse.balance)
+      document.querySelector(".friends-block-1-2").innerHTML = objectOfResponse.referals.length
+      var container = document.querySelector(".friends-list")
+      for (let i = 0; i<objectOfResponse.referals.length; i++) {
+        var newElement = document.createElement('div')
+        newElement.classList.add("friend-item")
+        if(objectOfResponse.referals[i].avatar == null){
+          objectOfResponse.referals[i].avatar = 'imgs/person-loading-img.png'
+        }
+        newElement.innerHTML = `
+            <img src="${objectOfResponse.referals[i].avatar}" class="friend-item-img">
+            <span class="friend-item-text">${objectOfResponse.referals[i].first_name}</span>
+            <div class="friend-item-plus">+ ${Math.floor(objectOfResponse.referals[i].earnedFromHim.toString())}</div>`
+        container.appendChild(newElement)
+      }
+      document.querySelector(".invite-btn1").href = `https://t.me/share/url?url=${objectOfResponse.referalLink}`
+      document.querySelector(".invite-btn2").addEventListener('click', function(){
+        navigator.clipboard.writeText(objectOfResponse.referalLink)
+        if(document.querySelector(".alert").style.display == "none" || document.querySelector(".alert").style.opacity == "0"){
+          anime({
+            targets: ".alert",
+            opacity: ["0", "1"],
+            duration: 600
+          })
+          document.querySelector(".alert").style.display = "flex"
+          document.querySelector(".alert").innerHTML = "Invite link was copied to clipboard! <img src='imgs/tick-icon.png'>"
+          setTimeout(function(){
+            anime({
+              targets: ".alert",
+              opacity: ["1", "0"],
+              duration: 600
+            })
+            setTimeout(function(){
+              document.querySelector(".alert").style.display = "none"
+            }, 600)
+          }, 2000)
+        }
+        
+      })
+    }
+    var timer
+    var WebAppUser = window.Telegram.WebApp.initDataUnsafe.user
+    window.addEventListener('load', function () {
+      document.querySelector(".overlay").style.display = "none"
+      anime({
+        targets: '.overlay',
+        opacity: [1, 0],
+        duration: 200,
+        easing: "linear"
+      })
+      setTimeout(function(){
+        if(window.Telegram){
+          document.querySelector(".loader-text").innerHTML = `Welcome back,<br>${WebAppUser.first_name}!`
+          var referCode = "<%= referCode %>"
+          axios.post('/checksub', {
+            tgid: WebAppUser.id
+          })
+          .then(async function (response) {
+            if(response.data.subbed == false){
+              document.querySelector(".task-item-btn").innerHTML =`<a href="https://t.me/friends_announcement/">Join</a>`
+            } else{
+               document.querySelector(".task-item-btn").innerHTML =`<span>Completed</span><img src='imgs/tick.png'>`
+            }
+            console.log(response.data)
+            if(response.data.justSubbed){
+              if(response.data.justSubbed == true){
+                anime({
+                  targets: ".alert",
+                  opacity: ["0", "1"],
+                  duration: 600
+                })
+                document.querySelector(".alert").style.display = "flex"
+                document.querySelector(".alert").innerHTML = "Task’s tokens successfully received<img src='imgs/tick-icon.png' style='margin-left: 6px;'>"
+                setTimeout(function(){
+                  anime({
+                    targets: ".alert",
+                    opacity: ["1", "0"],
+                    duration: 600
+                  })
+                  setTimeout(function(){
+                    document.querySelector(".alert").style.display = "none"
+                  }, 600)
+                }, 2000)
+              }
+            }
+          })
+          axios.post('/loading', {
+            thisChatId: WebAppUser.id,
+            isPremium: WebAppUser.is_premium,
+            referCode: referCode,
+          })
+          .then(async function (response) {
+            SetMainPage(response.data)
+            timer = setInterval(function(){
+              updateCountdown(response.data.timerWaitingFor)
+            }, 1000)
+            console.log(response)
+            if(response.data.firstTime == true){
+              document.querySelector('.loader-root').style.display = "flex"
+              document.querySelector('.loader-root').style.opacity = "1"
+              setTimeout(function(){
+                anime({
+                  targets: ".loader",
+                  duration: 300,
+                  opacity: "0",
+                  easing: "linear"
+                })
+                  
+                setTimeout(function(){
+                  document.querySelector(".loader").style.display = "none"
+                  document.querySelector(".received").style.display = "flex"
+                  document.querySelector(".received-balance").innerHTML = `${insertSpaces(response.data.balance)} $FRIENDS`
+                  anime({
+                    targets: ".received",
+                    duration: 300,
+                    opacity: [0, 1],
+                    easing: "linear"
+                  })
+                  setTimeout(function(){
+                    anime({
+                      targets: ".received-text2, .received-btn",
+                      duration: 300,
+                      opacity: [0, 1],
+                      easing: "linear"
+                    })
+                  }, 6500)
+                }, 300)
+              }, 1650)
+            } else{
+                document.querySelector('.loader-root').style.opacity = "0"
+                setTimeout(function(){
+                  document.querySelector(".loader-root").style.display = "none"
+                  document.querySelector(".main").style.display = "flex"
+                  anime({
+                    targets: ".main",
+                    duration: 300,
+                    opacity: "1",
+                    easing: "linear"
+                  })
+                }, 300)
+            }
+            axios.post('/getavatar', {
+              referals: response.data.referals
+            })
+            .then(function(response2){
+              console.log(response2)
+              /*for(let i = 0;i<response2.data.length;i++){
+                document.querySelectorAll(".friend-item-text")[i].innerHTML = response2.data[i].firstName
+                if(response2.data[i].avatar){
+                  document.querySelectorAll(".friend-item-img")[i].src = response2.data[i].avatar
+                }
+              }*/
+            })
+          })
+        }
+      }, 200)
+    })
+      
+    document.querySelector(".received-btn").addEventListener('click', function(){
+      anime({
+        targets: ".loader-root",
+        duration: 300,
+        opacity: "0",
+        easing: "linear"
+      })
+      setTimeout(function(){
+        document.querySelector(".loader-root").style.display = "none"
+        document.querySelector(".main").style.display = "flex"
+        anime({
+          targets: ".main",
+          duration: 300,
+          opacity: "1",
+          easing: "linear"
+        })
+      }, 300)
+    })
+    document.querySelector(".renew-img").addEventListener("click", function(){
+      var currentTransform = document.querySelector(".renew-img").style.transform
+      if(currentTransform){
+        if(currentTransform == "rotate(180deg)"){
+          anime({
+            targets: ".renew-img",
+            duration: 300,
+            rotate: 360,
+            easing: "linear"
+          })
+        } else if(currentTransform == "rotate(360deg)"){
+          anime({
+            targets: ".renew-img",
+            duration: 300,
+            rotate: [0, 180],
+            easing: "linear"
+          })
+        }
+      } else{
+        anime({
+          targets: ".renew-img",
+          duration: 300,
+          rotate: 180,
+          easing: "linear"
+        })
+      }
+      
+      axios.post('/loading', {
+        thisChatId: WebAppUser.id,
+        isPremium: WebAppUser.is_premium,
+        referCode: referCode,
+      })
+      .then(function(response){
+        var objectOfResponse = response.data
+        var container = document.querySelector(".friends-list")
+        container.innerHTML = ''
+        for (let i = 0; i<objectOfResponse.referals.length; i++) {
+          var newElement = document.createElement('div')
+          newElement.classList.add("friend-item")
+          if(objectOfResponse.referals[i].avatar == null){
+            objectOfResponse.referals[i].avatar = 'imgs/person-loading-img.png'
+          }
+          newElement.innerHTML = `
+              <img src="${objectOfResponse.referals[i].avatar}" class="friend-item-img">
+              <span class="friend-item-text">${objectOfResponse.referals[i].first_name}</span>
+              <div class="friend-item-plus">+ ${insertSpaces(Math.floor(objectOfResponse.referals[i].earnedFromHim.toString()))}</div>`
+          container.appendChild(newElement)
+        }
+      })
+      
+    })
+    document.querySelector(".faq-btn").addEventListener("click", function(){
+      document.getElementById("#body").style.paddingBottom = "0"
+      anime({
+        targets: ".main",
+        opacity: [1, 0],
+        duration: 200,
+        easing: "linear"
+      })
+      setTimeout(function(){
+        document.querySelector(".main").style.display = "none"
+        document.querySelector(".faq").style.display = "flex"
+        anime({
+          targets: ".faq",
+          opacity: [0, 1],
+          duration: 200,
+          easing: "linear"
+        })
+      }, 200)
+    })
+    document.getElementById("backtofriends").addEventListener("click", function(){
+      document.getElementById("#body").style.paddingBottom = "136px"
+      anime({
+        targets: ".faq",
+        opacity: [1, 0],
+        duration: 200,
+        easing: "linear"
+      })
+      setTimeout(function(){
+        document.querySelector(".main").style.display = "flex"
+        document.querySelector(".faq").style.display = "none"
+        anime({
+          targets: ".main",
+          opacity: [0, 1],
+          duration: 200,
+          easing: "linear"
+        })
+      }, 200)
+    })
+    let faqBlocks = document.querySelectorAll(".faq-block")
+    for(let i = 0;i<faqBlocks.length;i++){
+      faqBlocks[i].addEventListener('click', function(){
+        if(faqBlocks[i].classList.contains("faq-block-active")){
+          faqBlocks[i].querySelector(".arrow-container").classList.remove("arrow-container-active")
+          faqBlocks[i].classList.remove("faq-block-active")
+        } else{
+          for(let j = 0;j<faqBlocks.length;j++){
+            faqBlocks[j].classList.remove("faq-block-active")
+            faqBlocks[j].querySelector(".arrow-container").classList.remove("arrow-container-active")
+          }
+          faqBlocks[i].querySelector(".arrow-container").classList.toggle("arrow-container-active")
+          faqBlocks[i].classList.toggle("faq-block-active")
+        }
+        
+      })
+    }
+  </script>
+</body>
+</html>
